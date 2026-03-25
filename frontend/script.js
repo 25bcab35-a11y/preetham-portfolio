@@ -10,7 +10,7 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("https://portfolio-vwo1.onrender.com/contact", {
+    const res = await fetch("https://preetham-portfolio-5lu8.onrender.com/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -18,12 +18,18 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(data)
     });
 
+    // 🔥 IMPORTANT CHECK
+    if (!res.ok) {
+      throw new Error("Server response not OK");
+    }
+
     const result = await res.json();
 
-    alert(result.message); // ✅ POPUP
+    alert(result.message);
     form.reset();
 
   } catch (err) {
+    console.error(err);
     alert("❌ Server error");
   }
 });
